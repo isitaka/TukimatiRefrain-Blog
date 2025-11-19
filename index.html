@@ -38,7 +38,7 @@
             opacity: 0.7;
         }
         .container {
-            max-width: 1000px;
+            max-width: 1100px; /* 一覧が見やすいよう少し幅を広げました */
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -167,16 +167,9 @@
         }
 
         /* --- 作品リスト (Grid) --- */
-        .works-section-title {
-            font-size: 1.4rem;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 15px;
-            margin: 60px 0 40px;
-        }
-        
         .works-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
         }
         
@@ -184,7 +177,7 @@
             background: #fff;
             padding: 35px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.03);
-            border-radius: 4px; /* あえて角を少しだけ丸く */
+            border-radius: 4px;
             transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid #f0f0f0;
             display: flex;
@@ -196,7 +189,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.06);
         }
         
-        /* 受賞作の特別スタイル */
+        /* 受賞作のみ少しアクセントをつける */
         .featured-card {
             border-top: 4px solid var(--accent-color);
             background: #fffaf9;
@@ -220,7 +213,7 @@
         }
 
         .work-title {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 700;
             margin: 0 0 15px;
             line-height: 1.5;
@@ -271,32 +264,6 @@
         .btn-kakuyomu:hover {
             background: #f0f8ff;
             border-color: var(--kakuyomu-color);
-        }
-        
-        /* その他の作品リスト（簡易表示） */
-        .other-works-list {
-            list-style: none;
-            padding: 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .other-work-item {
-            background: #fff;
-            padding: 20px;
-            border: 1px solid #eee;
-            border-radius: 4px;
-        }
-        .other-work-title {
-            font-weight: 700;
-            display: block;
-            margin-bottom: 5px;
-        }
-        .other-work-meta {
-            font-size: 0.8rem;
-            color: #888;
-            display: block;
-            margin-bottom: 10px;
         }
 
         /* --- コンタクト --- */
@@ -392,7 +359,6 @@
         <section id="works">
             <h2><span>WORKS</span>作品紹介</h2>
             
-            <h3 class="works-section-title">代表作・受賞作</h3>
             <div class="works-grid">
                 
                 <div class="work-card featured-card">
@@ -456,6 +422,23 @@
 
                 <div class="work-card">
                     <div class="tags">
+                        <span class="tag">ファンタジー</span>
+                        <span class="tag">お仕事</span>
+                    </div>
+                    <h4 class="work-title">魔王軍の法務部</h4>
+                    <p class="work-desc">
+                        過労死した元エリート官僚が転生したのは、敵である魔王軍！？ 
+                        「契約魔法」と「法律知識」を武器に、ブラックな組織をホワイト企業へと改革する。異色の法務お仕事ファンタジー。
+                    </p>
+                    <div class="work-links">
+                        <a href="https://mypage.syosetu.com/1166591/" target="_blank" class="btn btn-narou">
+                            <i class="fa-solid fa-book"></i> なろう
+                        </a>
+                    </div>
+                </div>
+
+                <div class="work-card">
+                    <div class="tags">
                         <span class="tag">現代ドラマ</span>
                         <span class="tag">百合</span>
                     </div>
@@ -507,53 +490,42 @@
                         </a>
                     </div>
                 </div>
-            </div>
 
-            <h3 class="works-section-title">その他の作品</h3>
-            <ul class="other-works-list">
-                
-                <li class="other-work-item">
-                    <span class="other-work-title">魔王軍の法務部</span>
-                    <span class="other-work-meta">ファンタジー / お仕事</span>
+                <div class="work-card">
+                    <div class="tags">
+                        <span class="tag">ラブコメ</span>
+                        <span class="tag">学園</span>
+                    </div>
+                    <h4 class="work-title">恋する言霊、ダダ漏れです！</h4>
+                    <p class="work-desc">
+                        心の本音がすべて「言霊」として暴走してしまう女子高生・言吹ことは。
+                        彼女が迷い込んだのは、落第すれば存在が削除されるサバイバル学園だった！？ ドタバタ学園ラブコメディ。
+                    </p>
                     <div class="work-links">
                         <a href="https://mypage.syosetu.com/1166591/" target="_blank" class="btn btn-narou">
-                            <i class="fa-solid fa-book"></i> なろうで読む
+                            <i class="fa-solid fa-book"></i> なろう
                         </a>
                     </div>
-                </li>
+                </div>
 
-                <li class="other-work-item">
-                    <span class="other-work-title">恋する言霊、ダダ漏れです！</span>
-                    <span class="other-work-meta">ラブコメ / 学園ファンタジー</span>
-                    <div class="work-links">
-                        <a href="https://mypage.syosetu.com/1166591/" target="_blank" class="btn btn-narou">
-                            <i class="fa-solid fa-book"></i> なろうで読む
-                        </a>
+                <div class="work-card">
+                    <div class="tags">
+                        <span class="tag">百合</span>
+                        <span class="tag">アングラ</span>
                     </div>
-                </li>
-
-                <li class="other-work-item">
-                    <span class="other-work-title">カノジョの指先が夜を裂く</span>
-                    <span class="other-work-meta">百合 / アンダーグラウンド</span>
+                    <h4 class="work-title">カノジョの指先が夜を裂く</h4>
+                    <p class="work-desc">
+                        最底辺の地下アイドルと、違法ファイトクラブの元・天才フェンシング選手。
+                        夜の街で出会った二人は、狂気と暴力、そして愛に満ちた逃避行と共同生活を始める。
+                    </p>
                     <div class="work-links">
-                        <a href="https://kakuyomu.jp/users/Tatarafumi/works" target="_blank" class="btn btn-kakuyomu">
+                        <a href="https://kakuyomu.jp/users/Tatarafumi/works" target="_blank" class="btn btn-kakuyomu" style="width:100%;">
                             <i class="fa-solid fa-pen-nib"></i> カクヨムで読む
                         </a>
                     </div>
-                </li>
+                </div>
 
-                 <li class="other-work-item">
-                    <span class="other-work-title">アルデリア死因究明録</span>
-                    <span class="other-work-meta">短編 / ミステリー</span>
-                    <div class="work-links">
-                        <a href="https://mypage.syosetu.com/1166591/" target="_blank" class="btn btn-narou">
-                            <i class="fa-solid fa-book"></i> なろうで読む
-                        </a>
-                    </div>
-                </li>
-
-            </ul>
-
+            </div>
         </section>
 
         <section id="contact">
