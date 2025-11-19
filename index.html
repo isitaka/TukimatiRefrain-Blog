@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>月待ルフラン Official Website</title>
-    <meta name="description" content="小説家・月待ルフラン（第1回Nola原作大賞受賞）の公式ポートフォリオサイトです。受賞作『虫めづる姫君の死因究明録』ほか、最新の執筆情報を掲載しています。">
+    <meta name="description" content="小説家・月待ルフラン（第1回Nola原作大賞受賞）の公式ポートフォリオサイトです。全作品リストと最新情報を掲載しています。">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -16,9 +16,10 @@
         :root {
             --bg-color: #fcfbf9; /* 和紙のような温かみのある白 */
             --text-color: #3e3e3e; /* 真っ黒ではない墨色 */
-            --accent-color: #9e3d3d; /* 落ち着いた赤（茜色） */
-            --narou-color: #222; /* なろうリンク色 */
-            --kakuyomu-color: #1E90FF; /* カクヨムリンク色 */
+            --accent-color: #8a3b3b; /* 深い赤（茜色） */
+            --sub-color: #5d5d5d;
+            --narou-color: #222;
+            --kakuyomu-color: #1E90FF;
         }
         body {
             font-family: 'Shippori Mincho', serif;
@@ -34,31 +35,32 @@
             transition: all 0.3s ease;
         }
         a:hover {
-            opacity: 0.8;
+            opacity: 0.7;
         }
         .container {
-            max-width: 960px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
         /* --- ヘッダー --- */
         header {
-            padding: 50px 0 30px;
+            padding: 60px 0 40px;
             text-align: center;
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         h1 {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             margin: 0 0 10px 0;
-            font-weight: 600;
-            letter-spacing: 0.1em;
+            font-weight: 700;
+            letter-spacing: 0.15em;
         }
         .subtitle {
             font-size: 0.9rem;
             color: #888;
             display: block;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            letter-spacing: 0.1em;
         }
         nav ul {
             list-style: none;
@@ -68,26 +70,42 @@
             gap: 30px;
             font-size: 0.95rem;
         }
-        nav a:hover {
-            color: var(--accent-color);
+        nav a {
+            position: relative;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 50%;
+            background-color: var(--accent-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        nav a:hover::after {
+            width: 100%;
         }
 
         /* --- ヒーローセクション --- */
         .hero {
             text-align: center;
             padding: 100px 0;
-            background-image: radial-gradient(#eee 1px, transparent 1px);
-            background-size: 20px 20px;
+            background-image: radial-gradient(#e0e0e0 1px, transparent 1px);
+            background-size: 25px 25px;
         }
         .hero p {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             margin-bottom: 30px;
             font-weight: 600;
+            line-height: 2;
         }
         .hero small {
             display: block;
             font-size: 0.9rem;
             color: #666;
+            margin-top: 20px;
         }
 
         /* --- セクション共通 --- */
@@ -95,18 +113,17 @@
             padding: 80px 0;
         }
         h2 {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             text-align: center;
             margin-bottom: 60px;
-            position: relative;
+            font-weight: 600;
         }
-        h2::after {
-            content: "";
+        h2 span {
             display: block;
-            width: 40px;
-            height: 2px;
-            background: var(--accent-color);
-            margin: 15px auto 0;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            letter-spacing: 0.1em;
         }
 
         /* --- プロフィール --- */
@@ -118,15 +135,14 @@
             max-width: 700px;
             margin: 0 auto;
         }
-        .profile-role {
-            color: var(--accent-color);
-            font-weight: bold;
-            margin-bottom: 10px;
-            display: inline-block;
-            border: 1px solid var(--accent-color);
+        .award-badge {
+            background-color: var(--accent-color);
+            color: #fff;
             padding: 5px 15px;
             border-radius: 20px;
             font-size: 0.85rem;
+            margin-bottom: 20px;
+            letter-spacing: 0.05em;
         }
         .social-links {
             margin-top: 30px;
@@ -143,105 +159,175 @@
             border-radius: 50%;
             border: 1px solid #ddd;
             font-size: 1.2rem;
+            color: var(--text-color);
         }
         .social-links a:hover {
             border-color: var(--accent-color);
             color: var(--accent-color);
         }
 
-        /* --- 作品リスト --- */
+        /* --- 作品リスト (Grid) --- */
+        .works-section-title {
+            font-size: 1.4rem;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 15px;
+            margin: 60px 0 40px;
+        }
+        
         .works-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 40px;
         }
+        
         .work-card {
             background: #fff;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            border-radius: 8px;
-            transition: transform 0.3s;
-            border: 1px solid #eee;
+            padding: 35px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            border-radius: 4px; /* あえて角を少しだけ丸く */
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #f0f0f0;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
         .work-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
         }
-        .work-tag {
+        
+        /* 受賞作の特別スタイル */
+        .featured-card {
+            border-top: 4px solid var(--accent-color);
+            background: #fffaf9;
+        }
+
+        .tags {
+            margin-bottom: 15px;
+        }
+        .tag {
             font-size: 0.75rem;
-            background: #f0f0f0;
-            padding: 3px 8px;
-            border-radius: 4px;
-            color: #666;
+            background: #eee;
+            padding: 4px 10px;
+            border-radius: 2px;
+            color: #555;
             margin-right: 5px;
+            letter-spacing: 0.05em;
         }
+        .tag.award {
+            background: var(--accent-color);
+            color: #fff;
+        }
+
         .work-title {
-            font-weight: bold;
-            font-size: 1.15rem;
-            margin: 15px 0 10px;
-            display: block;
-            line-height: 1.4;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0 0 15px;
+            line-height: 1.5;
         }
         .work-desc {
             font-size: 0.9rem;
             color: #666;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: justify;
-            flex-grow: 1; /* ボタンを下に揃えるため */
+            flex-grow: 1;
         }
-        
-        /* リンクボタンエリア */
+
+        /* リンクボタン */
         .work-links {
             display: flex;
-            flex-wrap: wrap;
             gap: 10px;
             margin-top: auto;
+            flex-wrap: wrap;
         }
-        .btn-link {
+        .btn {
             flex: 1;
+            padding: 10px 0;
             text-align: center;
-            padding: 8px 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
             border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: bold;
             border: 1px solid #ddd;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 5px;
+            gap: 6px;
+            min-width: 100px;
         }
         .btn-narou {
-            color: #555;
+            color: #444;
             background: #fff;
         }
         .btn-narou:hover {
-            background: #f5f5f5;
-            color: #000;
+            background: #f9f9f9;
             border-color: #999;
+            color: #000;
         }
         .btn-kakuyomu {
-            color: #1E90FF;
+            color: var(--kakuyomu-color);
             background: #fff;
-            border-color: #e0eeff;
+            border-color: #e6f2ff;
         }
         .btn-kakuyomu:hover {
             background: #f0f8ff;
-            border-color: #1E90FF;
+            border-color: var(--kakuyomu-color);
+        }
+        
+        /* その他の作品リスト（簡易表示） */
+        .other-works-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .other-work-item {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+        .other-work-title {
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .other-work-meta {
+            font-size: 0.8rem;
+            color: #888;
+            display: block;
+            margin-bottom: 10px;
         }
 
-        /* --- コンタクト & フッター --- */
-        .contact-area {
-            background: #f4f4f4;
+        /* --- コンタクト --- */
+        .contact-box {
+            background: #fff;
+            padding: 50px;
             text-align: center;
-            padding: 60px 20px;
-            border-radius: 8px;
+            border: 1px solid #eee;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
         }
+        .contact-btn {
+            display: inline-block;
+            background: #000;
+            color: #fff;
+            padding: 12px 35px;
+            border-radius: 30px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .contact-btn:hover {
+            background: #333;
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
         footer {
             text-align: center;
             padding: 40px 0;
-            margin-top: 60px;
+            margin-top: 80px;
             font-size: 0.8rem;
             color: #999;
             border-top: 1px solid #eee;
@@ -250,8 +336,9 @@
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
             .hero { padding: 80px 0; }
-            .hero p { font-size: 1.1rem; }
+            .hero p { font-size: 1.2rem; }
             .work-links { flex-direction: column; }
+            .contact-box { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -265,7 +352,7 @@
                 <ul>
                     <li><a href="#about">About</a></li>
                     <li><a href="#works">Works</a></li>
-                    <li><a href="#contact">Links</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -278,23 +365,24 @@
         </section>
 
         <section id="about">
-            <h2>About</h2>
+            <h2><span>ABOUT</span>プロフィール</h2>
             <div class="profile-wrapper">
-                <span class="profile-role">第1回Nola原作大賞 受賞</span>
+                <span class="award-badge">第1回Nola原作大賞 受賞</span>
                 <h3>月待ルフラン</h3>
                 <p>
                     小説家・漫画原作者。<br>
                     『虫めづる姫君の死因究明録』にて第1回Nola原作大賞を受賞。<br>
-                    推理、異世界ファンタジー、百合など、幅広いジャンルで物語を紡いでいます。
+                    論理的なミステリーから、感情を揺さぶる百合、痛快な異世界コメディまで。<br>
+                    ジャンルの枠を超え、心に残る物語を執筆しています。
                 </p>
                 <div class="social-links">
-                    <a href="https://twitter.com/tukimatirefrain" target="_blank" title="X (Twitter)">
+                    <a href="https://twitter.com/tukimatirefrain" target="_blank" aria-label="X (Twitter)">
                         <i class="fa-brands fa-x-twitter"></i>
                     </a>
-                    <a href="https://kakuyomu.jp/users/Tatarafumi" target="_blank" title="カクヨム">
+                    <a href="https://kakuyomu.jp/users/Tatarafumi" target="_blank" aria-label="カクヨム">
                         <span style="font-weight:bold; font-family:sans-serif;">K</span>
                     </a>
-                    <a href="https://mypage.syosetu.com/1166591/" target="_blank" title="小説家になろう">
+                    <a href="https://mypage.syosetu.com/1166591/" target="_blank" aria-label="小説家になろう">
                         <i class="fa-solid fa-book-open"></i>
                     </a>
                 </div>
@@ -302,123 +390,179 @@
         </section>
 
         <section id="works">
-            <h2>Works</h2>
+            <h2><span>WORKS</span>作品紹介</h2>
+            
+            <h3 class="works-section-title">代表作・受賞作</h3>
             <div class="works-grid">
                 
-                <div class="work-card" style="border-top: 4px solid var(--accent-color);">
-                    <div>
-                        <span class="work-tag" style="background:var(--accent-color); color:#fff;">第1回Nola原作大賞受賞</span>
-                        <span class="work-tag">ミステリー</span>
+                <div class="work-card featured-card">
+                    <div class="tags">
+                        <span class="tag award">★第1回Nola原作大賞受賞</span>
+                        <span class="tag">ミステリー</span>
                     </div>
-                    <span class="work-title">虫めづる姫君の死因究明録</span>
+                    <h4 class="work-title">虫めづる姫君の死因究明録</h4>
                     <p class="work-desc">
-                        塔に幽閉された『虫めづる姫君』リンネ。彼女の興味は、生者の社交界ではなく、死体が語る声なき真実のみ。
-                        王立騎士団のアレクシスと共に、前世の《法医昆虫学》の知識で「神託」による偽りの死因を覆していく。
-                        変人姫と完璧騎士が織りなす本格異世界ミステリー。
+                        塔に幽閉された『虫めづる姫君』リンネ。彼女の興味は生者の社交界ではなく、死体が語る真実のみ。王立騎士団のアレクシスと共に、前世の《法医昆虫学》の知識で偽りの「神託」を覆していく、本格異世界ミステリー。
                     </p>
                     <div class="work-links">
-                        <a href="https://ncode.syosetu.com/n5466kw/" target="_blank" class="btn-link btn-narou">
+                        <a href="https://ncode.syosetu.com/n5466kw/" target="_blank" class="btn btn-narou">
                             <i class="fa-solid fa-book"></i> なろう
                         </a>
-                        <a href="https://kakuyomu.jp/works/16818792438147227212" target="_blank" class="btn-link btn-kakuyomu">
+                        <a href="https://kakuyomu.jp/works/16818792438147227212" target="_blank" class="btn btn-kakuyomu">
                             <i class="fa-solid fa-pen-nib"></i> カクヨム
                         </a>
                     </div>
                 </div>
 
                 <div class="work-card">
-                    <div>
-                        <span class="work-tag">異世界ファンタジー</span>
-                        <span class="work-tag">コメディ</span>
+                    <div class="tags">
+                        <span class="tag">異世界ファンタジー</span>
+                        <span class="tag">コメディ</span>
                     </div>
-                    <span class="work-title">転生悪役令嬢イザベラ、婚約破棄も魔法も筋肉で粉砕します！</span>
+                    <h4 class="work-title">転生悪役令嬢イザベラ、婚約破棄も魔法も筋肉で粉砕します！</h4>
                     <p class="work-desc">
-                        乙女ゲームの悪役令嬢に転生したイザベラ。破滅フラグを回避すべく彼女が導き出した答えは――「筋肉が足りない」！ 
+                        乙女ゲームの悪役令嬢に転生したイザベラ。破滅フラグを回避すべく導き出した答えは――「筋肉が足りない」！ 
                         婚約破棄も恋の陰謀も魔法も、全て規格外の筋力で物理的に粉砕する痛快コメディ。
                     </p>
                     <div class="work-links">
-                        <a href="https://ncode.syosetu.com/n8606kt/" target="_blank" class="btn-link btn-narou">
+                        <a href="https://ncode.syosetu.com/n8606kt/" target="_blank" class="btn btn-narou">
                             <i class="fa-solid fa-book"></i> なろう
                         </a>
-                        <a href="https://kakuyomu.jp/users/Tatarafumi/works" target="_blank" class="btn-link btn-kakuyomu">
+                        <a href="https://kakuyomu.jp/users/Tatarafumi/works" target="_blank" class="btn btn-kakuyomu">
                             <i class="fa-solid fa-pen-nib"></i> カクヨム
                         </a>
                     </div>
                 </div>
 
                 <div class="work-card">
-                    <div>
-                        <span class="work-tag">異世界転生</span>
-                        <span class="work-tag">百合/ミステリー</span>
+                    <div class="tags">
+                        <span class="tag">異世界転生</span>
+                        <span class="tag">百合/サスペンス</span>
                     </div>
-                    <span class="work-title">祝・推し発見！――推し活メイドの聖戦録</span>
+                    <h4 class="work-title">祝・推し発見！――推し活メイドの聖戦録</h4>
                     <p class="work-desc">
-                        司法試験浪人の私が異世界転生したのは、公爵家の無気力メイド。
-                        美しい銀髪の令嬢セレスティーナ様に一目惚れして「推し活」を始めたが、彼女は1年後に処刑される運命だった！？前世の法律知識で運命に抗う！
+                        司法試験浪人の私が転生したのは、公爵家の無気力メイド。一目惚れした銀髪の令嬢セレスティーナ様は、1年後に処刑される運命だった！？
+                        前世の法律知識と持ち前の執念で運命に抗う、命懸けの推し活録。
                     </p>
                     <div class="work-links">
-                        <a href="https://ncode.syosetu.com/n2901kt/" target="_blank" class="btn-link btn-narou">
+                        <a href="https://ncode.syosetu.com/n2901kt/" target="_blank" class="btn btn-narou">
                             <i class="fa-solid fa-book"></i> なろう
                         </a>
-                        <a href="https://kakuyomu.jp/works/16818792436787919533" target="_blank" class="btn-link btn-kakuyomu">
+                        <a href="https://kakuyomu.jp/users/Tatarafumi/works" target="_blank" class="btn btn-kakuyomu">
                             <i class="fa-solid fa-pen-nib"></i> カクヨム
                         </a>
                     </div>
                 </div>
 
                 <div class="work-card">
-                    <div>
-                        <span class="work-tag">現代ドラマ</span>
-                        <span class="work-tag">百合</span>
+                    <div class="tags">
+                        <span class="tag">現代ドラマ</span>
+                        <span class="tag">百合</span>
                     </div>
-                    <span class="work-title">体育館で、きみの傷跡を舐めた話</span>
+                    <h4 class="work-title">体育館で、きみの傷跡を舐めた話</h4>
                     <p class="work-desc">
                         動けない私を、二人の少女が奪い合う。その痛みと悦びの物語。
                         バレー部のエースだった月城凛は、事故で車椅子生活に。絶望する彼女の前に現れたのは、献身的な幼なじみと……。
                     </p>
                     <div class="work-links">
-                         <a href="https://kakuyomu.jp/works/16818792437309143182" target="_blank" class="btn-link btn-kakuyomu" style="flex:none; width:100%;">
+                        <a href="https://kakuyomu.jp/works/16818792437309143182" target="_blank" class="btn btn-kakuyomu" style="width:100%;">
                             <i class="fa-solid fa-pen-nib"></i> カクヨムで読む
                         </a>
                     </div>
                 </div>
 
                 <div class="work-card">
-                    <div>
-                        <span class="work-tag">青春</span>
-                        <span class="work-tag">GL</span>
+                    <div class="tags">
+                        <span class="tag">青春</span>
+                        <span class="tag">GL</span>
                     </div>
-                    <span class="work-title">ファインダーを覗く君、ファインダー越しの君</span>
+                    <h4 class="work-title">ファインダーを覗く君、ファインダー越しの君</h4>
                     <p class="work-desc">
                         閉館が決まったプラネタリウムだけが、私の世界の全てだった。
-                        夏休み、そこに現れたのは、カメラを提げた不思議な少女・月島澪。「君を撮りたい」――そのファインダー越しに見つめる恋の物語。
+                        夏休み、そこに現れたのはカメラを提げた不思議な少女・月島澪。「君を撮りたい」――ファインダー越しに見つめる恋の物語。
                     </p>
                     <div class="work-links">
-                        <a href="https://ncode.syosetu.com/n8821kt/" target="_blank" class="btn-link btn-narou">
+                        <a href="https://ncode.syosetu.com/n8821kt/" target="_blank" class="btn btn-narou">
                             <i class="fa-solid fa-book"></i> なろう
                         </a>
-                        <a href="https://kakuyomu.jp/users/Tatarafumi/works" target="_blank" class="btn-link btn-kakuyomu">
+                        <a href="https://kakuyomu.jp/users/Tatarafumi/works" target="_blank" class="btn btn-kakuyomu">
                             <i class="fa-solid fa-pen-nib"></i> カクヨム
                         </a>
                     </div>
                 </div>
 
+                <div class="work-card">
+                    <div class="tags">
+                        <span class="tag">新聞部</span>
+                        <span class="tag">百合</span>
+                    </div>
+                    <h4 class="work-title">ファクト＆エモーション</h4>
+                    <p class="work-desc">
+                        ～互いの記録を付ける新聞部の少女達の話～。
+                        完璧主義の部長と、感覚派の後輩。取材ノートと音声ログ、異なる記録媒体で互いを記録し合う二人の、静かで熱い関係性。
+                    </p>
+                    <div class="work-links">
+                        <a href="https://kakuyomu.jp/works/16818792437620919595" target="_blank" class="btn btn-kakuyomu" style="width:100%;">
+                            <i class="fa-solid fa-pen-nib"></i> カクヨムで読む
+                        </a>
+                    </div>
+                </div>
             </div>
+
+            <h3 class="works-section-title">その他の作品</h3>
+            <ul class="other-works-list">
+                
+                <li class="other-work-item">
+                    <span class="other-work-title">魔王軍の法務部</span>
+                    <span class="other-work-meta">ファンタジー / お仕事</span>
+                    <div class="work-links">
+                        <a href="https://mypage.syosetu.com/1166591/" target="_blank" class="btn btn-narou">
+                            <i class="fa-solid fa-book"></i> なろうで読む
+                        </a>
+                    </div>
+                </li>
+
+                <li class="other-work-item">
+                    <span class="other-work-title">恋する言霊、ダダ漏れです！</span>
+                    <span class="other-work-meta">ラブコメ / 学園ファンタジー</span>
+                    <div class="work-links">
+                        <a href="https://mypage.syosetu.com/1166591/" target="_blank" class="btn btn-narou">
+                            <i class="fa-solid fa-book"></i> なろうで読む
+                        </a>
+                    </div>
+                </li>
+
+                <li class="other-work-item">
+                    <span class="other-work-title">カノジョの指先が夜を裂く</span>
+                    <span class="other-work-meta">百合 / アンダーグラウンド</span>
+                    <div class="work-links">
+                        <a href="https://kakuyomu.jp/users/Tatarafumi/works" target="_blank" class="btn btn-kakuyomu">
+                            <i class="fa-solid fa-pen-nib"></i> カクヨムで読む
+                        </a>
+                    </div>
+                </li>
+
+                 <li class="other-work-item">
+                    <span class="other-work-title">アルデリア死因究明録</span>
+                    <span class="other-work-meta">短編 / ミステリー</span>
+                    <div class="work-links">
+                        <a href="https://mypage.syosetu.com/1166591/" target="_blank" class="btn btn-narou">
+                            <i class="fa-solid fa-book"></i> なろうで読む
+                        </a>
+                    </div>
+                </li>
+
+            </ul>
+
         </section>
 
         <section id="contact">
-            <div class="contact-area">
-                <h2>Links & Contact</h2>
-                <p>執筆のご依頼、最新情報はX（Twitter）にて発信しております。</p>
-                <div style="margin-top: 20px;">
-                    <a href="https://twitter.com/tukimatirefrain" target="_blank" style="display:inline-block; background:#000; color:#fff; padding:10px 25px; border-radius:30px; font-size:0.9rem; text-decoration:none;">
-                        <i class="fa-brands fa-x-twitter"></i> @tukimatirefrain をフォロー
-                    </a>
-                </div>
-                <div style="margin-top: 30px; font-size: 0.9rem;">
-                    <a href="https://kakuyomu.jp/users/Tatarafumi" target="_blank" style="margin: 0 15px; border-bottom:1px solid #999;">カクヨム ユーザーページ</a>
-                    <a href="https://mypage.syosetu.com/1166591/" target="_blank" style="margin: 0 15px; border-bottom:1px solid #999;">小説家になろう マイページ</a>
-                </div>
+            <h2><span>CONTACT</span>お問い合わせ</h2>
+            <div class="contact-box">
+                <p>執筆のご依頼、感想、最新情報はX（Twitter）にて受け付けております。</p>
+                <a href="https://twitter.com/tukimatirefrain" target="_blank" class="contact-btn">
+                    <i class="fa-brands fa-x-twitter"></i> @tukimatirefrain
+                </a>
             </div>
         </section>
     </main>
