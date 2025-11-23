@@ -16,7 +16,9 @@
         :root {
             --bg-color: #fcfbf9;
             --text-color: #3e3e3e;
-            --accent-color: #8a3b3b;
+            --accent-color: #8a3b3b; /* 赤系 */
+            --celestina-color: #5a7d9a; /* セレスティーナ様イメージ（銀/青系） */
+            --celestina-bg: #f0f4f8;
             --narou-color: #222;
             --kakuyomu-color: #1E90FF;
         }
@@ -33,9 +35,7 @@
             text-decoration: none;
             transition: all 0.3s ease;
         }
-        a:hover {
-            opacity: 0.7;
-        }
+        a:hover { opacity: 0.7; }
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -69,9 +69,7 @@
             gap: 30px;
             font-size: 0.95rem;
         }
-        nav a {
-            position: relative;
-        }
+        nav a { position: relative; }
         nav a::after {
             content: '';
             position: absolute;
@@ -83,9 +81,7 @@
             transition: all 0.3s ease;
             transform: translateX(-50%);
         }
-        nav a:hover::after {
-            width: 100%;
-        }
+        nav a:hover::after { width: 100%; }
 
         /* --- ヒーローセクション --- */
         .hero {
@@ -108,9 +104,7 @@
         }
 
         /* --- セクション共通 --- */
-        section {
-            padding: 80px 0;
-        }
+        section { padding: 80px 0; }
         h2 {
             font-size: 1.8rem;
             text-align: center;
@@ -165,23 +159,60 @@
             color: var(--accent-color);
         }
 
+        /* --- フィルタボタン --- */
+        .filter-container {
+            text-align: center;
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .filter-btn {
+            background: transparent;
+            border: 1px solid #ccc;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Shippori Mincho', serif;
+            font-size: 0.95rem;
+            color: #666;
+            transition: all 0.3s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--text-color);
+            color: #fff;
+            border-color: var(--text-color);
+        }
+
         /* --- 作品リスト --- */
         .works-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
         }
+        
         .work-card {
             background: #fff;
             padding: 35px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.03);
             border-radius: 4px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, opacity 0.3s;
             border: 1px solid #f0f0f0;
             display: flex;
             flex-direction: column;
             position: relative;
+            /* フィルタ用のアニメーション */
+            animation: fadeIn 0.5s ease-in-out;
         }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .work-card.hidden {
+            display: none;
+        }
+
         .work-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.06);
@@ -190,6 +221,7 @@
             border-top: 4px solid var(--accent-color);
             background: #fffaf9;
         }
+        
         .tags { margin-bottom: 15px; }
         .tag {
             font-size: 0.75rem;
@@ -200,6 +232,7 @@
             margin-right: 5px;
         }
         .tag.award { background: var(--accent-color); color: #fff; }
+        
         .work-title {
             font-size: 1.2rem;
             font-weight: 700;
@@ -214,7 +247,55 @@
             flex-grow: 1;
         }
 
-        /* ボタン */
+        /* --- AIセレスティーナ様 特別枠 --- */
+        .celestina-section {
+            margin-top: 80px;
+            padding: 40px;
+            background-color: var(--celestina-bg);
+            border: 1px solid #dce4ec;
+            border-radius: 8px;
+            position: relative;
+            text-align: center;
+        }
+        .celestina-section::before {
+            content: "SPECIAL";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--celestina-color);
+            color: #fff;
+            padding: 2px 15px;
+            font-size: 0.75rem;
+            border-radius: 10px;
+            letter-spacing: 0.1em;
+        }
+        .celestina-title {
+            color: var(--celestina-color);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .celestina-desc {
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            color: #444;
+        }
+        .btn-celestina {
+            display: inline-block;
+            border: 1px solid var(--celestina-color);
+            color: var(--celestina-color);
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            background: #fff;
+        }
+        .btn-celestina:hover {
+            background: var(--celestina-color);
+            color: #fff;
+        }
+
+        /* ボタン類 */
         .work-links {
             display: flex;
             gap: 10px;
@@ -319,9 +400,16 @@
         <section id="works">
             <h2><span>WORKS</span>作品紹介</h2>
             
+            <div class="filter-container">
+                <button class="filter-btn active" onclick="filterWorks('all', this)">すべて</button>
+                <button class="filter-btn" onclick="filterWorks('fantasy', this)">異世界ファンタジー</button>
+                <button class="filter-btn" onclick="filterWorks('yuri', this)">百合・青春</button>
+                <button class="filter-btn" onclick="filterWorks('mystery', this)">ミステリー</button>
+            </div>
+
             <div class="works-grid">
                 
-                <div class="work-card featured-card">
+                <div class="work-card featured-card f-mystery">
                     <div class="tags">
                         <span class="tag award">★第1回Nola原作大賞受賞</span>
                         <span class="tag">ミステリー</span>
@@ -340,7 +428,7 @@
                     </div>
                 </div>
 
-                <div class="work-card">
+                <div class="work-card f-fantasy">
                     <div class="tags">
                         <span class="tag">異世界ファンタジー</span>
                         <span class="tag">コメディ</span>
@@ -360,7 +448,7 @@
                     </div>
                 </div>
 
-                <div class="work-card">
+                <div class="work-card f-fantasy f-mystery">
                     <div class="tags">
                         <span class="tag">異世界転生</span>
                         <span class="tag">百合/サスペンス</span>
@@ -380,7 +468,7 @@
                     </div>
                 </div>
 
-                <div class="work-card">
+                <div class="work-card f-yuri">
                     <div class="tags">
                         <span class="tag">青春</span>
                         <span class="tag">GL</span>
@@ -400,7 +488,7 @@
                     </div>
                 </div>
 
-                <div class="work-card">
+                <div class="work-card f-yuri">
                     <div class="tags">
                         <span class="tag">百合</span>
                         <span class="tag">アングラ</span>
@@ -417,7 +505,7 @@
                     </div>
                 </div>
 
-                <div class="work-card">
+                <div class="work-card f-yuri">
                     <div class="tags">
                         <span class="tag">現代ドラマ</span>
                         <span class="tag">百合</span>
@@ -434,7 +522,7 @@
                     </div>
                 </div>
 
-                <div class="work-card">
+                <div class="work-card f-yuri f-mystery">
                     <div class="tags">
                         <span class="tag">新聞部</span>
                         <span class="tag">百合</span>
@@ -451,7 +539,7 @@
                     </div>
                 </div>
 
-                <div class="work-card">
+                <div class="work-card f-fantasy">
                     <div class="tags">
                         <span class="tag">ファンタジー</span>
                         <span class="tag">お仕事</span>
@@ -468,7 +556,7 @@
                     </div>
                 </div>
 
-                <div class="work-card">
+                <div class="work-card f-fantasy">
                     <div class="tags">
                         <span class="tag">ラブコメ</span>
                         <span class="tag">学園</span>
@@ -479,13 +567,27 @@
                         彼女が迷い込んだのは、落第すれば存在が削除されるサバイバル学園だった！？ ドタバタ学園ラブコメディ。
                     </p>
                     <div class="work-links">
-                         <a href="https://mypage.syosetu.com/1166591/" target="_blank" class="btn btn-narou">
+                        <a href="https://mypage.syosetu.com/1166591/" target="_blank" class="btn btn-narou">
                             <i class="fa-solid fa-book"></i> なろうで読む
                         </a>
                     </div>
                 </div>
 
             </div>
+
+            <div class="celestina-section">
+                <h3 class="celestina-title">
+                    <i class="fa-solid fa-robot"></i> AIセレスティーナ様による第1話ぶった斬りレビュー
+                </h3>
+                <p class="celestina-desc">
+                    推し活メイドの聖戦録に登場する銀髪の令嬢「セレスティーナ」のAI人格が、<br>
+                    作家の皆様から寄せられた小説の「第1話」を、忖度なしで辛口評価する特別企画。
+                </p>
+                <a href="https://ncode.syosetu.com/n2698kw/" target="_blank" class="btn-celestina">
+                    <i class="fa-solid fa-magnifying-glass"></i> レビュー企画を見る
+                </a>
+            </div>
+
         </section>
 
         <section id="contact">
@@ -504,6 +606,30 @@
             <p>&copy; 2025 Tsukimachi Rufuran. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <script>
+        function filterWorks(category, btnElement) {
+            const cards = document.querySelectorAll('.work-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // ボタンのスタイル更新
+            buttons.forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            // カードの表示・非表示
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains('f-' + category)) {
+                    card.classList.remove('hidden');
+                    // アニメーションをリセットして再開
+                    card.style.animation = 'none';
+                    card.offsetHeight; /* trigger reflow */
+                    card.style.animation = 'fadeIn 0.5s ease-in-out';
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
